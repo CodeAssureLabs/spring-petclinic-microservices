@@ -1,0 +1,17 @@
+schema_version: 1
+manifest_version: 1
+repo: CodeAssureLabs/spring-petclinic-microservices
+layers:
+  api:     [service, domain, config]
+  service: [domain, config]
+  domain:  [config]
+  config:  []
+cross_cutting: [config]
+forbidden_edges:
+  - id: no-domain-to-api
+    from: domain
+    to: api
+    reason: "domain (model) must not depend on the api (web) layer"
+    check: blocking
+    severity: high
+exemptions: []
