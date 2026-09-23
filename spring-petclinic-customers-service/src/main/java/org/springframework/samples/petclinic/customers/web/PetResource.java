@@ -61,7 +61,7 @@ class PetResource {
             .orElseThrow(() -> new ResourceNotFoundException("Owner " + ownerId + " not found"));
 
         final Pet pet = new Pet();
-        owner.addPet(pet);
+        owner.registerPet(pet);
         return save(pet, petRequest);
     }
 

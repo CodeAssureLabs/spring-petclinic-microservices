@@ -79,7 +79,11 @@ public class Owner {
         return Collections.unmodifiableList(sortedPets);
     }
 
-    public void addPet(Pet pet) {
+    /**
+     * Registers the given pet with this owner and sets the back-reference.
+     * @param pet the pet to register
+     */
+    public void registerPet(Pet pet) {
         getPetsInternal().add(pet);
         pet.setOwner(this);
     }
