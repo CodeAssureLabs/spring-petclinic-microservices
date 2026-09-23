@@ -36,11 +36,20 @@ public final class PetSummaryHelper {
     }
 
     /**
+     * Wraps a label in parentheses.
+     * @param label the label to wrap
+     * @return the wrapped label
+     */
+    public static String parenthesize(String label) {
+        return "(" + label + ")";
+    }
+
+    /**
      * Returns the type label wrapped in parentheses, e.g. {@code "(cat)"}.
      * @param pet the pet
      * @return the wrapped type label
      */
     public static String bracketedTypeLabel(Pet pet) {
-        return PetSummaryFormatter.parenthesize(typeLabel(pet));
+        return parenthesize(typeLabel(pet));
     }
 }

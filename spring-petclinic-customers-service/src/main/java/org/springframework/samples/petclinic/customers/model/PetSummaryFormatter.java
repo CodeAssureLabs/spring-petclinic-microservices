@@ -29,16 +29,6 @@ public final class PetSummaryFormatter {
      * @return the formatted summary
      */
     public static String format(Pet pet) {
-        String typeName = PetSummaryHelper.typeLabel(pet);
-        return pet.getName() + " (" + typeName + ")";
-    }
-
-    /**
-     * Wraps a label in parentheses.
-     * @param label the label to wrap
-     * @return the wrapped label
-     */
-    public static String parenthesize(String label) {
-        return "(" + label + ")";
+        return pet.getName() + " " + PetSummaryHelper.bracketedTypeLabel(pet);
     }
 }
