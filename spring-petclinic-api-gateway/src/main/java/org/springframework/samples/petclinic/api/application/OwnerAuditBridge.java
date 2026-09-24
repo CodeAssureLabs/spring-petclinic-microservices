@@ -17,23 +17,22 @@ package org.springframework.samples.petclinic.api.application;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.samples.petclinic.api.boundary.web.ApiGatewayController;
 import org.springframework.samples.petclinic.api.dto.OwnerDetails;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Mono;
 
 /**
- * Records an audit entry each time an owner's aggregated details are requested.
+ * Records an audit entry each time an owner's details are requested.
  */
 @Component
 public class OwnerAuditBridge {
 
     private static final Logger log = LoggerFactory.getLogger(OwnerAuditBridge.class);
 
-    private final ApiGatewayController apiGatewayController;
+    private final CustomersServiceClient customersServiceClient;
 
-    public OwnerAuditBridge(ApiGatewayController apiGatewayController) {
-        this.apiGatewayController = apiGatewayController;
+    public OwnerAuditBridge(CustomersServiceClient customersServiceClient) {
+        this.customersServiceClient = customersServiceClient;
     }
 
     /**
@@ -43,7 +42,7 @@ public class OwnerAuditBridge {
      */
     public Mono<OwnerDetails> auditedOwnerDetails(int ownerId) {
         log.info("Audit: owner details requested for ownerId={}", ownerId);
-        return apiGatewayController.getOwnerDetails(ownerId)
+        return customersServiceClient.getOwner(ownerId)
             .doOnNext(details -> log.info("Audit: resolved owner {} {}", details.firstName(), details.lastName()));
     }
 }
