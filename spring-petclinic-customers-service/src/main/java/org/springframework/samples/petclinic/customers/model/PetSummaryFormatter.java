@@ -29,8 +29,7 @@ public final class PetSummaryFormatter {
      * @return the formatted summary
      */
     public static String format(Pet pet) {
-        String typeName = PetSummaryHelper.typeLabel(pet);
-        return pet.getName() + " (" + typeName + ")";
+        return pet.getName() + " " + PetSummaryHelper.bracketedTypeLabel(pet);
     }
 
     /**
