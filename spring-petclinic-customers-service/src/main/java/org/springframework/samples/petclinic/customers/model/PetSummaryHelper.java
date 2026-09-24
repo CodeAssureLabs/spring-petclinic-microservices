@@ -41,6 +41,6 @@ public final class PetSummaryHelper {
      * @return the wrapped type label
      */
     public static String bracketedTypeLabel(Pet pet) {
-        return PetSummaryFormatter.parenthesize(typeLabel(pet));
+        return "(" + typeLabel(pet) + ")";
     }
 }
